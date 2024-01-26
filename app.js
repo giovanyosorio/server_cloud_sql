@@ -49,6 +49,20 @@ app.get("/createpost",(req,res)=>{
     res.send("post created")
 
 })
+//select post
+
+app.get("/getposts",(req,res)=>{
+    let sql='SELECT * FROM post'
+    var query = db.query(sql, function (error, results) {
+        if (error) throw error;
+        // Neat!
+  
+      console.log(results); 
+      res.send("Post fetched")
+    });
+})
+
+
 app.listen("3000",()=>{
     console.log("server started on port 3000");
 })
