@@ -28,6 +28,17 @@ app.get("/createdb",(req,res)=>{
     })
 })
 
+app.get("/createtable",(req,res)=>{
+    let sql='CREATE TABLE post(id int AUTO_INCREMENT PRIMARY KEY, title VARCHAR(100), body VARCHAR(200))'
+    db.query(sql,(err,result)=>{
+        if(err){
+            throw err
+        }
+        res.send("table  created....")
+    })
+
+})
+
 app.listen("3000",()=>{
     console.log("server started on port 3000");
 })
