@@ -62,7 +62,16 @@ app.get("/getposts",(req,res)=>{
     });
 })
 
-
+app.get("/getpost/:id",(req,res)=>{
+    let sql=`SELECT * FROM post WHERE id=${req.params.id}`
+    var query = db.query(sql, function (error, results) {
+        if (error) throw error;
+        // Neat!
+  
+      console.log(results[0]); 
+      res.send(results[0])
+    });
+})
 app.listen("3000",()=>{
     console.log("server started on port 3000");
 })
