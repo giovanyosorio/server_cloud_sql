@@ -39,6 +39,16 @@ app.get("/createtable",(req,res)=>{
 
 })
 
+app.get("/createpost",(req,res)=>{
+    var post  = {title: 'Post four' ,body:"Hello Node js"};
+    var query = db.query('INSERT INTO post SET ?', post, function (error, results, fields) {
+      if (error) throw error;
+      // Neat!
+    });
+    console.log(query.sql); 
+    res.send("post created")
+
+})
 app.listen("3000",()=>{
     console.log("server started on port 3000");
 })
