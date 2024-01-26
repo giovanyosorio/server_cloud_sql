@@ -41,7 +41,7 @@ app.get("/createtable",(req,res)=>{
 
 app.get("/createpost",(req,res)=>{
     var post  = {title: 'Post four' ,body:"Hello Node js"};
-    var query = db.query('INSERT INTO post SET ?', post, function (error, results, fields) {
+    let query = db.query('INSERT INTO post SET ?', post, function (error, results, fields) {
       if (error) throw error;
       // Neat!
     });
@@ -53,7 +53,7 @@ app.get("/createpost",(req,res)=>{
 
 app.get("/getposts",(req,res)=>{
     let sql='SELECT * FROM post'
-    var query = db.query(sql, function (error, results) {
+    let query = db.query(sql, function (error, results) {
         if (error) throw error;
         // Neat!
   
@@ -64,11 +64,22 @@ app.get("/getposts",(req,res)=>{
 
 app.get("/getpost/:id",(req,res)=>{
     let sql=`SELECT * FROM post WHERE id=${req.params.id}`
-    var query = db.query(sql, function (error, results) {
+    let query = db.query(sql, function (error, results) {
         if (error) throw error;
         // Neat!
   
       console.log(results[0]); 
+      res.send(results[0])
+    });
+})
+app.get("/updatepost/:id",(req,res)=>{
+   let newTitle="New update title"
+    let sql=`UPDATE post SET  title='${newTitle}' WHERE  id=${req.params.id}`
+    let query = db.query(sql, function (error, results) {
+        if (error) throw error;
+        // Neat!
+  
+      console.log(results); 
       res.send(results[0])
     });
 })
