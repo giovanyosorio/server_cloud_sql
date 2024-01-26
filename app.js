@@ -80,7 +80,7 @@ app.get("/updatepost/:id",(req,res)=>{
         // Neat!
   
       console.log(results); 
-      res.send(results[0])
+      res.send("Updated post")
     });
 })
 
